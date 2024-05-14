@@ -7,7 +7,27 @@
 */
 
 function isPalindrome(str) {
-  return true;
-}
+  str=str.toLowerCase();
+  // str=str.split(" ").join("");
+  // even better approach , use this method -> replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"") instead of using seperate split and join
 
+  str=str.replace(/[.,\/#!$%\^&\*;:{2,}=\-_`~()?]/g,"");
+  str=str.split(" ").join("");
+
+  var len = str.length;
+  if(len%2===0){
+      for(let i=0 , j=len-1 ; i<len/2 && j>=len/2 ; i++ , j--){
+          if(str[i]===str[j]) continue;
+          else return false;
+      }  
+      return true;
+  }  
+  else if(len%2!=0){
+      for(let i=0 , j=len-1 ; i<len/2 && j>len/2 ; i++ , j--){
+          if(str[i]===str[j]) continue;
+          else return false;
+      }  
+      return true;
+  }
+}
 module.exports = isPalindrome;
